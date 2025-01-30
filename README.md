@@ -21,7 +21,7 @@ Before running this application, make sure you have:
 1. Clone this repository:
 ```bash
 git clone <repository-url>
-cd haiku-generator
+cd AI-Haiku-Poet-Flask-Gemini
 ```
 
 2. Install the required dependencies:
@@ -60,6 +60,11 @@ haiku-generator/
 ├── main.py           # Flask application and Gemini AI integration
 ├── .env             # Environment variables (API key)
 ├── README.md        # Project documentation
+└── static/          # Static folder
+    └── css/
+        └── styles.css  
+    └── js
+        └── script.js
 └── templates/       # HTML templates
     └── index.html   # Main web interface
 ```
