@@ -4,6 +4,8 @@ document.getElementById('haiku-form').addEventListener('submit', function (event
     // Get the theme value
     const theme = document.getElementById('theme').value;
 
+    console.log(theme)
+
     fetch('/generate-haiku', {
         method: 'POST',
         headers: {
