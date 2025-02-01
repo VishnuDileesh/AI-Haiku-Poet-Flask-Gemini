@@ -1,12 +1,13 @@
 # Haiku Generator
 
-A simple web application that generates nature-themed haikus using Google's Gemini AI model. The application takes a theme as input and creates a beautiful haiku based on that theme, leveraging the power of Gemini 1.5 Flash for creative poetry generation.
+A simple web application that generates nature-themed haikus using Google's Gemini AI model. The application takes a theme as input and creates a beautiful haiku based on that theme, leveraging the power of Gemini 1.5 Flash for creative poetry generation. All generated haikus are stored in a SQLite database for persistence.
 
 ## Features
 
 - Web-based interface for easy interaction
 - Generates unique nature-themed haikus using Gemini AI
 - Fast response times using Gemini 1.5 Flash model
+- SQLite database storage for all generated haikus
 - Simple and intuitive user experience
 
 ## Prerequisites
@@ -29,6 +30,7 @@ cd AI-Haiku-Poet-Flask-Gemini
 pip install flask
 pip install google-generativeai
 pip install python-dotenv
+pip install flask-sqlalchemy
 ```
 
 3. Create a `.env` file in the root directory and add your Gemini API key:
@@ -44,20 +46,21 @@ To start the application, run:
 python main.py
 ```
 
-The application will be available at `http://localhost:5000`
+The application will be available at `http://localhost:5000`. On first run, it will automatically create the SQLite database file (`haikus.db`).
 
 ## Usage
 
 1. Open your web browser and navigate to `http://localhost:5000`
 2. Enter a theme in the input field (e.g., "autumn leaves", "mountain stream", "cherry blossoms")
 3. Click the generate button
-4. The application will return a unique nature-themed haiku based on your input
+4. The application will return a unique nature-themed haiku based on your input and store it in the database
 
 ## Project Structure
 
 ```
 haiku-generator/
 ├── main.py           # Flask application and Gemini AI integration
+├── haikus.db         # SQLite database file
 ├── .env             # Environment variables (API key)
 ├── README.md        # Project documentation
 └── static/          # Static folder
@@ -69,9 +72,23 @@ haiku-generator/
     └── index.html   # Main web interface
 ```
 
+## Database Schema
+
+The application uses SQLite with the following schema:
+
+```sql
+CREATE TABLE haiku (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    text TEXT NOT NULL,
+    theme VARCHAR(255) NOT NULL
+);
+```
+
 ## Technologies Used
 
 - Flask: Python web framework for serving the application
+- Flask-SQLAlchemy: SQL ORM for database management
+- SQLite: Lightweight database for storing haikus
 - Google Gemini AI 1.5 Flash: Advanced language model for haiku generation
 - HTML/CSS/JavaScript: Frontend interface
 - python-dotenv: Environment variable management
